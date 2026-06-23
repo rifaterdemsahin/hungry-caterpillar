@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Very Hungry Caterpillar - Music & Sound Effects Analysis</title>
+    <meta name="description" content="Workshop on video, audio, and music scoring based on The Very Hungry Caterpillar. Includes a transcript and identification of music and sound effects.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --text-color: #f8fafc;
+            --accent-color: #38bdf8;
+            --card-bg: #1e293b;
+            --border-color: #334155;
+            --music-tag-color: #a78bfa;
+            --sfx-tag-color: #f472b6;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            color: #94a3b8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .video-container {
+            position: sticky;
+            top: 2rem;
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-color);
+        }
+
+        video {
+            width: 100%;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .audio-container {
+            margin-top: 1.5rem;
+        }
+
+        audio {
+            width: 100%;
+            outline: none;
+        }
+
+        .transcript-container {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-color);
+            height: 80vh;
+            overflow-y: auto;
+        }
+
+        .transcript-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .transcript-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+        }
+
+        .transcript-container::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        .transcript-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+        }
+
+        .transcript-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(5px);
+        }
+
+        .transcript-item.active {
+            background: rgba(56, 189, 248, 0.1);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .time {
+            font-size: 0.85rem;
+            color: #64748b;
+            white-space: nowrap;
+            font-family: monospace;
+            padding-top: 0.2rem;
+        }
+
+        .text {
+            flex: 1;
+            font-size: 1rem;
+            color: #cbd5e1;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tag-music {
+            background: rgba(167, 139, 250, 0.2);
+            color: var(--music-tag-color);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+        }
+
+        .tag-sfx {
+            background: rgba(244, 114, 182, 0.2);
+            color: var(--sfx-tag-color);
+            border: 1px solid rgba(244, 114, 182, 0.3);
+        }
+
+        /* Controls */
+        .controls {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .controls h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #e2e8f0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Video & Audio Scoring Workshop</h1>
+        <p>Case Study: The Very Hungry Caterpillar - Timing, Music & Sound Effects Analysis</p>
+    </header>
+
+    <div class="container">
+        <div class="video-container">
+            <video id="main-video" controls>
+                <source src="hungry_caterpillar.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <div class="audio-container">
+                <div class="controls">
+                    <h3>Isolated Audio Track</h3>
+                </div>
+                <audio id="main-audio" controls>
+                    <source src="hungry_caterpillar_audio.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <p style="font-size: 0.85rem; color: #64748b; margin-top: 0.5rem;">
+                    Listen to the isolated audio track to focus purely on the musical score and sound design elements.
+                </p>
+            </div>
+        </div>
+
+        <div class="transcript-container" id="transcript-container">
+            <!-- Transcript will be populated here -->
+            <div style="text-align: center; color: #64748b; padding: 2rem;">Loading transcript...</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const transcriptContainer = document.getElementById('transcript-container');
+            const video = document.getElementById('main-video');
+
+            function parseTime(timeStr) {
+                // timeStr format: 00:01:08.320
+                const parts = timeStr.split(':');
+                if (parts.length === 3) {
+                    const hours = parseFloat(parts[0]);
+                    const mins = parseFloat(parts[1]);
+                    const secs = parseFloat(parts[2]);
+                    return (hours * 3600) + (mins * 60) + secs;
+                }
+                return 0;
+            }
+
+            function formatTags(text) {
+                let formattedText = text;
+                
+                // Format [Music]
+                formattedText = formattedText.replace(/\[Music\]/gi, '<span class="tag tag-music">🎵 Music</span>');
+                
+                // Format [Applause] or other potential sound effects
+                formattedText = formattedText.replace(/\[Applause\]/gi, '<span class="tag tag-sfx">🔊 SFX: Applause</span>');
+                
+                return formattedText;
+            }
+
+            // Fetch transcript
+            fetch('transcript.json')
+                .then(response => response.json())
+                .then(data => {
+                    transcriptContainer.innerHTML = '';
+                    
+                    let transcriptData = [];
+
+                    data.forEach((item, index) => {
+                        const timeRange = item.time.split(' --> ');
+                        const startTimeStr = timeRange[0];
+                        const endTimeStr = timeRange[1] || timeRange[0];
+                        
+                        const startTime = parseTime(startTimeStr);
+                        const endTime = parseTime(endTimeStr);
+
+                        // Simple deduplication of exact same text on consecutive rows
+                        if (index > 0 && data[index-1].text === item.text) {
+                            return;
+                        }
+
+                        // Clean up text
+                        let cleanText = formatTags(item.text);
+
+                        const div = document.createElement('div');
+                        div.className = 'transcript-item';
+                        div.dataset.start = startTime;
+                        div.dataset.end = endTime;
+                        
+                        div.innerHTML = `
+                            <div class="time">${startTimeStr.substring(3, 8)}</div>
+                            <div class="text">${cleanText}</div>
+                        `;
+
+                        div.addEventListener('click', () => {
+                            video.currentTime = startTime;
+                            video.play();
+                        });
+
+                        transcriptData.push({ element: div, start: startTime, end: endTime });
+                        transcriptContainer.appendChild(div);
+                    });
+
+                    // Sync transcript with video
+                    video.addEventListener('timeupdate', () => {
+                        const currentTime = video.currentTime;
+                        
+                        transcriptData.forEach(item => {
+                            if (currentTime >= item.start && currentTime <= (item.end + 1.0)) { // +1.0 buffer
+                                item.element.classList.add('active');
+                                // Optional: auto-scroll to active element
+                                // item.element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            } else {
+                                item.element.classList.remove('active');
+                            }
+                        });
+                    });
+                })
+                .catch(error => {
+                    transcriptContainer.innerHTML = '<div style="color: #ef4444; padding: 1rem;">Failed to load transcript data.</div>';
+                    console.error('Error loading transcript:', error);
+                });
+        });
+    </script>
+</body>
+</html>
