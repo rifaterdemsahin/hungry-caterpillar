@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principles & Patterns - Music Scoring Workshop</title>
+    <meta name="description" content="Learn the first principles of music scoring, major and minor keys, and how they apply to The Very Hungry Caterpillar.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --text-color: #f8fafc;
+            --accent-color: #38bdf8;
+            --card-bg: #1e293b;
+            --border-color: #334155;
+            --happy-color: #fcd34d;
+            --sad-color: #818cf8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            color: #94a3b8;
+        }
+
+        nav {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        nav a:hover, nav a.active {
+            background: rgba(56, 189, 248, 0.1);
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-color);
+        }
+
+        h2 {
+            color: var(--accent-color);
+            margin-top: 0;
+            font-size: 1.8rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: #e2e8f0;
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+        }
+
+        p {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card-happy {
+            background: rgba(252, 211, 77, 0.1);
+            border: 1px solid rgba(252, 211, 77, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .card-happy::before {
+            content: "☀️ Major";
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: #451a03;
+            color: var(--happy-color);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .card-sad {
+            background: rgba(129, 140, 248, 0.1);
+            border: 1px solid rgba(129, 140, 248, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .card-sad::before {
+            content: "🌧️ Minor";
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: #1e1b4b;
+            color: var(--sad-color);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .timeline {
+            position: relative;
+            margin-top: 2rem;
+            padding-left: 2rem;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -35px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            border: 4px solid var(--bg-color);
+        }
+
+        .timeline-item.minor::before {
+            background: var(--sad-color);
+        }
+
+        .timeline-item.major::before {
+            background: var(--happy-color);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Video & Audio Scoring Workshop</h1>
+        <p>Case Study: The Very Hungry Caterpillar - Timing, Music & Sound Effects Analysis</p>
+        <nav>
+            <a href="index.html">Interactive Analysis</a>
+            <a href="principles.html" class="active">Principles & Patterns</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        
+        <div class="section-card">
+            <h2>1. First Principles of Music Scoring</h2>
+            <p>
+                At its core, music scoring is about emotional manipulation and storytelling support. Before words are spoken, music tells the audience how to feel. This relies heavily on the fundamental building blocks of Western music theory: <strong>Tonality (Major vs. Minor keys)</strong>.
+            </p>
+            
+            <div class="grid-2">
+                <div class="card-happy">
+                    <h3>Happy Tunes (Major Keys)</h3>
+                    <p>
+                        Major chords and scales are built using intervals that resolve cleanly. The spacing between the notes creates a harmonic resonance that our brains interpret as bright, stable, triumphant, or peaceful.
+                    </p>
+                    <p><strong>Common Associations:</strong> Joy, birth, morning light, success, lightness, innocence.</p>
+                </div>
+                
+                <div class="card-sad">
+                    <h3>Sad/Tense Tunes (Minor Keys)</h3>
+                    <p>
+                        Minor chords flatten the third note of the scale. This slight alteration introduces acoustic dissonance. The brain perceives this as "unresolved," creating a feeling of tension, sadness, suspense, or darkness.
+                    </p>
+                    <p><strong>Common Associations:</strong> Sickness, danger, sadness, night, heavy weight, struggle.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h2>2. Application in The Very Hungry Caterpillar</h2>
+            <p>
+                In an animated film designed for children, the musical score does heavy lifting to communicate the state of the protagonist. Because the caterpillar does not speak, the instruments and tonality become its voice.
+            </p>
+
+            <div class="timeline">
+                
+                <div class="timeline-item major">
+                    <h3>The Birth (Major Key / Light Instrumentation)</h3>
+                    <p>
+                        <strong>Scene:</strong> "One Sunday morning the warm sun came up and pop! Out of the egg came a tiny and very hungry caterpillar."
+                    </p>
+                    <p>
+                        <strong>Scoring Pattern:</strong> The scene uses bright, acoustic instruments (often flutes or pizzicato strings) in a high register. The tonality is firmly <strong>Major</strong>, conveying the innocence, warmth, and miracle of new life. The upward trajectory of the notes mimics the sun rising.
+                    </p>
+                </div>
+
+                <div class="timeline-item major">
+                    <h3>The Eating Montage (Rhythmic & Playful)</h3>
+                    <p>
+                        <strong>Scene:</strong> Eating through apples, pears, plums, strawberries, and oranges.
+                    </p>
+                    <p>
+                        <strong>Scoring Pattern:</strong> The music becomes bouncy and rhythmic. A repetitive motif is introduced that matches the physical "munching" action. It stays largely in a <strong>Major</strong> key because eating is an instinctively joyful and satisfying act for the creature.
+                    </p>
+                </div>
+
+                <div class="timeline-item minor">
+                    <h3>The Stomachache (Minor Key / Dissonance)</h3>
+                    <p>
+                        <strong>Scene:</strong> Saturday night, after eating chocolate cake, ice cream, a pickle, Swiss cheese, etc. "That night he had a stomachache."
+                    </p>
+                    <p>
+                        <strong>Scoring Pattern:</strong> The score abruptly shifts. The tempo slows down, instruments drop to a lower pitch (cellos, bassoons), and the tonality shifts to <strong>Minor</strong>. You might hear dissonant notes (notes that clash) to musically represent physical pain and regret. The "happy tune" is broken.
+                    </p>
+                </div>
+
+                <div class="timeline-item major">
+                    <h3>The Metamorphosis (Triumphant Major)</h3>
+                    <p>
+                        <strong>Scene:</strong> Emerging from the cocoon as a beautiful butterfly.
+                    </p>
+                    <p>
+                        <strong>Scoring Pattern:</strong> A massive return to the <strong>Major</strong> key, but this time with full orchestration. It’s no longer the delicate flute of the tiny caterpillar; it's sweeping strings and brass. The resolution from the tension of the cocoon phase into a grand, open major chord tells the audience: <em>He has succeeded. The transformation is complete.</em>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

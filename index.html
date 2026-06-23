@@ -49,6 +49,30 @@
             color: #94a3b8;
         }
 
+        nav {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        nav a:hover, nav a.active {
+            background: rgba(56, 189, 248, 0.1);
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -192,6 +216,10 @@
     <header>
         <h1>Video & Audio Scoring Workshop</h1>
         <p>Case Study: The Very Hungry Caterpillar - Timing, Music & Sound Effects Analysis</p>
+        <nav>
+            <a href="index.html" class="active">Interactive Analysis</a>
+            <a href="principles.html">Principles & Patterns</a>
+        </nav>
     </header>
 
     <div class="container">
